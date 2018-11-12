@@ -1,7 +1,6 @@
 package com.sitexa.constant;
 
 /**
- * created by CaiBaoHong at 2018/4/18 11:07<br>
  *     响应的code
  */
 public interface Codes {

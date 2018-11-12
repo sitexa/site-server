@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * created by CaiBaoHong at 2018/4/17 16:41<br>
- */
 @PermInfo(value = "选项模块", pval = "a:option")
 @RestController
 @RequestMapping("/option")
