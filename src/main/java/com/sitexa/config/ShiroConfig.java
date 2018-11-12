@@ -48,7 +48,4 @@ public class ShiroConfig {
         return chain;
     }
 
-
-
-
 }
