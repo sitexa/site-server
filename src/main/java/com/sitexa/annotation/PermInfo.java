@@ -9,14 +9,14 @@ public @interface PermInfo {
 
     /**
      * 权限值
-     * @return
+     * @return String
      */
     String pval() default "";
 
     /**
      * 权限名称
      * pname的别名
-     * @return
+     * @return String
      */
     String value() default "";
 
