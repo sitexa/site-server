@@ -210,7 +210,7 @@ public class SysPermController {
      * @param clz
      * @return
      */
-    public SysPerm getModulePerm(Class<?> clz) {
+    private SysPerm getModulePerm(Class<?> clz) {
         SysPerm perm = new SysPerm();
         //首选值
         PermInfo piAnno = AnnotationUtils.getAnnotation(clz, PermInfo.class);
