@@ -97,8 +97,11 @@ public class SysRoleController {
 
         int current = json.getIntValue("current");
         int size = json.getIntValue("size");
-        if (current == 0) current = 1;
-        if (size == 0) size = 10;
+        if (current == 0){
+            current = 1;
+        }
+        if (size == 0){
+        } size = 10;
 
         Wrapper<SysRole> queryParams = new EntityWrapper<>();
         queryParams.orderBy("created", false);
@@ -143,7 +146,9 @@ public class SysRoleController {
 
         Wrapper<SysRolePerm> deleteRelationParam = new EntityWrapper<SysRolePerm>().eq("role_id", rid).eq("perm_type", ptype);
         boolean deleteRelationSucc = rolePermService.delete(deleteRelationParam);
-        if (!deleteRelationSucc) return Json.fail(oper, "无法解除原来的角色-权限关系");
+        if (!deleteRelationSucc){
+            return Json.fail(oper, "无法解除原来的角色-权限关系");
+        }
 
         if (!pvals.isEmpty()){
             List<SysRolePerm> list = vo.getPvals().stream().map(pval -> new SysRolePerm(rid, pval,ptype)).collect(Collectors.toList());

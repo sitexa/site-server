@@ -132,7 +132,9 @@ public class SysUserController {
 
         //删除：原来绑定的角色
         boolean deleteSucc = sysUserRoleService.delete(new EntityWrapper<SysUserRole>().eq("user_id", uid));
-        if (!deleteSucc) return Json.fail(oper, "无法解除原来的用户-角色关系");
+        if (!deleteSucc) {
+            return Json.fail(oper, "无法解除原来的用户-角色关系");
+        }
 
         //更新：绑定新的角色
         List<SysUserRole> list = rids.stream().map(roleId -> new SysUserRole(uid, roleId)).collect(Collectors.toList());
