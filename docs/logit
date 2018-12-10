@@ -1,0 +1,10 @@
+2018-12-10
+
+add table sys_org
+
+add entity SysOrg
+    SysOrgService/SysOrgServiceImpl
+    SysOrgController
+    SysOrgMapper/SysOrgMapper.xml
+
+ Test problem exist.
