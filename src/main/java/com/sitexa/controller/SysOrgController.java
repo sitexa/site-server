@@ -28,7 +28,7 @@ public class SysOrgController {
     private SysOrgService sysOrgService;
 
     @PermInfo("添加组织机构")
-    //RequiresPermissions("a:sys:org:add")
+    @RequiresPermissions("a:sys:org:add")
     @PostMapping
     public Json add(@RequestBody String body) {
 
@@ -55,7 +55,7 @@ public class SysOrgController {
     }
 
     @PermInfo("删除组织机构")
-    //@RequiresPermissions("a:sys:org:del")
+    @RequiresPermissions("a:sys:org:del")
     @DeleteMapping
     public Json delete(@RequestBody String body) {
         String oper = "delete org";
@@ -72,8 +72,8 @@ public class SysOrgController {
     }
 
     @PermInfo("更新组织机构信息")
-    //@RequiresPermissions("a:sys:org:update")
-    @PatchMapping("/update")
+    @RequiresPermissions("a:sys:org:update")
+    @PatchMapping
     public Json update(@RequestBody String body) {
 
         String oper = "update org";
@@ -87,7 +87,7 @@ public class SysOrgController {
     }
 
     @PermInfo("查询组织机构信息")
-    //@RequiresPermissions("a:sys:org:info")
+    @RequiresPermissions("a:sys:org:info")
     @PostMapping("/info")
     public Json info(@RequestBody String body) {
         String oper = "query org info";
@@ -101,7 +101,7 @@ public class SysOrgController {
     }
 
     @PermInfo("查询组织机构列表")
-    //@RequiresPermissions("a:sys:org:list")
+    @RequiresPermissions("a:sys:org:list")
     @PostMapping("/query")
     public Json query(@RequestBody String body) {
         String oper = "query org";

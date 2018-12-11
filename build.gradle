@@ -56,6 +56,7 @@ dependencies {
     //其他库
     compile 'com.alibaba:fastjson:1.2.47'
     compile 'org.apache.commons:commons-lang3'
+    //要使用lombok,必须再加上AnnotationProcesser插件。
     annotationProcessor 'org.projectlombok:lombok:1.18.2'
     compileOnly 'org.projectlombok:lombok:1.18.2'
 
