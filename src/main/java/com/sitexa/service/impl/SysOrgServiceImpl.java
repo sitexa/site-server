@@ -7,6 +7,8 @@ import com.sitexa.entity.SysOrg;
 import com.sitexa.service.SysOrgService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> implements SysOrgService {
 
@@ -19,4 +21,21 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
     public Page<SysOrg> queryByOname(Page page, String oname) {
         return page.setRecords(baseMapper.queryByOname(page,oname));
     }
+
+    @Override
+    public List<SysOrg> queryOrgChildren(String oid) {
+        return baseMapper.queryOrgChildren(oid);
+    }
+
+    @Override
+    public List<SysOrg> getTopOrg() {
+        return baseMapper.getTopOrg();
+    }
+
+    @Override
+    public SysOrg getRoot() {
+        return baseMapper.getRoot();
+    }
+
+
 }

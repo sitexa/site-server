@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.sitexa.annotation.PermInfo;
 import com.sitexa.entity.SysOrg;
 import com.sitexa.service.SysOrgService;
+import com.sitexa.util.OrgTree;
 import com.sitexa.util.PageUtils;
 import com.sitexa.vo.Json;
 import org.apache.commons.lang3.StringUtils;
@@ -15,6 +16,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.TreeSet;
 
 @PermInfo(value = "组织机构模块")
 @RequiresPermissions("a:sys:org")
@@ -112,5 +118,38 @@ public class SysOrgController {
         return Json.succ(oper).data("page", page);
     }
 
+    @PermInfo("查询组织机构树")
+    @RequiresPermissions("a:sys:org:tree")
+    @PostMapping("/tree")
+    public Json tree(@RequestBody String body) {
+        String oper = "query org tree";
+        log.info("{},{}", oper, body);
+        JSONObject json = JSON.parseObject(body);
+        String oid = json.getString("oid");
+        List<SysOrg> list = sysOrgService.queryOrgChildren(oid);
+        return Json.succ(oper).data("list", list);
+    }
+
+    @PermInfo("查询组织机构顶部树")
+    @RequiresPermissions("a:sys:org:top")
+    @GetMapping("/top")
+    public Json top() {
+        String oper = "query org top";
+        log.info("{}", oper);
+        List<SysOrg> list = sysOrgService.getTopOrg();
+        OrgTree tree = new OrgTree();
+        tree.addAll(list);
+        return Json.succ(oper).data("tree", tree);
+    }
+
+    @PermInfo("查询组织机构根节点")
+    @RequiresPermissions("a:sys:org:top")
+    @GetMapping("/root")
+    public Json root() {
+        String oper = "query org root";
+        log.info("{}", oper);
+        SysOrg sysOrg = sysOrgService.getRoot();
+        return Json.succ(oper).data("root", sysOrg);
+    }
 
 }

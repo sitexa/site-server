@@ -29,4 +29,17 @@
         order by oname
     </select>
 
+    <select id="queryOrgChildren" resultType="SysOrg">
+        select * from sys_org
+        where find_in_set(pid,QueryOrgChildren(oid))
+    </select>
+
+    <select id="getTopOrg" resultType="SysOrg">
+        select * from sys_org where pid is null
+        union select * from sys_org where pid = (select oid from sys_org where pid is null)
+    </select>
+
+    <select id="getRoot" resultType="SysOrg">
+        select * from sys_org where pid is null limit 1
+    </select>
 </mapper>

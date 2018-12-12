@@ -13,4 +13,10 @@ public interface SysOrgMapper extends BaseMapper<SysOrg> {
 
     List<SysOrg> queryByOname(Page page,@Param("oname")String oname);
 
+    List<SysOrg> queryOrgChildren(@Param("oid")String oid);
+
+    List<SysOrg> getTopOrg();
+
+    SysOrg getRoot();
+
 }
