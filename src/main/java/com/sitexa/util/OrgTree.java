@@ -1,28 +1,28 @@
 package com.sitexa.util;
 
-import com.sitexa.entity.SysOrg;
+import com.sitexa.vo.OrgNode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrgTree {
 
-    private SysOrg node;
+    private OrgNode node;
 
     private List<OrgTree> children = new ArrayList<>();
 
     public OrgTree() {
     }
 
-    public OrgTree(SysOrg node) {
+    public OrgTree(OrgNode node) {
         this.node = node;
     }
 
-    public SysOrg getNode() {
+    public OrgNode getNode() {
         return node;
     }
 
-    public void setNode(SysOrg node) {
+    public void setNode(OrgNode node) {
         this.node = node;
     }
 
@@ -30,14 +30,14 @@ public class OrgTree {
         return children;
     }
 
-    public void add(SysOrg node) {
+    public void add(OrgNode node) {
         if (node.getPid().equals(this.node.getOid())) {
             this.children.add(new OrgTree(node));
         }
     }
 
-    public void addAll(List<SysOrg> list) {
-        for (SysOrg node : list) {
+    public void addAll(List<OrgNode> list) {
+        for (OrgNode node : list) {
             if (node.getPid() == null) {
                 this.node = node;
             } else {
