@@ -5,10 +5,10 @@ buildscript {
         springBootVersion = '2.0.1.RELEASE'
     }
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
     }
     dependencies {
-        classpath ("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
@@ -30,7 +30,7 @@ compileTestJava.options.encoding = "UTF-8"
 
 //设置maven阿里云镜像
 repositories {
-    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public'}
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
 }
 
 //项目依赖
@@ -43,7 +43,7 @@ dependencies {
 
     //mysql及druid连接池
     compile 'mysql:mysql-connector-java'
-    compile 'com.alibaba:druid-spring-boot-starter:1.1.9'
+    compile 'com.alibaba:druid-spring-boot-starter:1.1.10'
 
     //mybatis
 //    compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2'
@@ -92,7 +92,12 @@ bootRun {
  *
  */
 
+/**
+ * 以下代码是将gradle项目转化为maven项目，生成pom.xml文件。
+ * 运行： gradle install
+ */
 
+//apply plugin: 'maven'
 
 
 

@@ -10,17 +10,17 @@ import com.sitexa.service.SysOrgService;
 import com.sitexa.util.OrgTree;
 import com.sitexa.util.PageUtils;
 import com.sitexa.vo.Json;
+import com.sitexa.vo.OrgNode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 @PermInfo(value = "组织机构模块")
 @RequiresPermissions("a:sys:org")
@@ -137,8 +137,13 @@ public class SysOrgController {
         String oper = "query org top";
         log.info("{}", oper);
         List<SysOrg> list = sysOrgService.getTopOrg();
+        List<OrgNode> nodelist = list.stream().map(org -> {
+            OrgNode node = new OrgNode();
+            BeanUtils.copyProperties(org, node);
+            return node;
+        }).collect(Collectors.toList());
         OrgTree tree = new OrgTree();
-        tree.addAll(list);
+        tree.addAll(nodelist);
         return Json.succ(oper).data("tree", tree);
     }
 
