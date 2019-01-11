@@ -8,7 +8,7 @@
         <result property="nick"  column="nick" />
         <result property="pwd"  column="pwd" />
         <result property="salt"  column="salt" />
-        <result property="lock"  column="lock" />
+        <result property="lock"  column="locked" />
         <result property="created"  column="created" jdbcType="TIMESTAMP" />
         <result property="updated"  column="updated" jdbcType="TIMESTAMP" />
     </resultMap>

@@ -19,6 +19,7 @@ public class SysUser extends Model<SysUser> {
     private String nick;    // 用户昵称，可改
     private String pwd;     // 已加密的登录密码
     private String salt;    // 加密盐值
+    @TableField("locked")
     private Boolean lock;   // 是否锁定
     private Date created;   // 创建时间
     private Date updated;   // 修改时间
